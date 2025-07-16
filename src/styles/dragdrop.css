@@ -1,0 +1,43 @@
+
+/* Drag and drop styling */
+.draggable {
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+.drop-target {
+  transition: all 0.2s ease;
+}
+
+.drop-target.drag-over {
+  border-color: #7B61FF !important;
+  background-color: rgba(123, 97, 255, 0.08) !important;
+  box-shadow: 0 0 0 2px rgba(123, 97, 255, 0.2);
+}
+
+.drop-target .drop-indicator {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(123, 97, 255, 0.05);
+  border-radius: 0.375rem;
+}
+
+.drop-target.drag-over .drop-indicator {
+  opacity: 1;
+}
+
+.drag-item {
+  transition: opacity 0.2s ease;
+}
+
+.drag-item.dragging {
+  opacity: 0.5;
+}

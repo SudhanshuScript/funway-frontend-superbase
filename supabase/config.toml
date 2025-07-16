@@ -1,0 +1,14 @@
+
+project_id = "vjwxmgaoqsfdyynqwynz"
+
+[functions.sessions]
+verify_jwt = true
+
+[functions.session-analytics]
+verify_jwt = true
+
+[functions.offer-analytics]
+verify_jwt = true
+
+[functions.check-table-exists]
+verify_jwt = false

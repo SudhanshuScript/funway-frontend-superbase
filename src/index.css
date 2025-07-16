@@ -1,0 +1,224 @@
+@import url('https://rsms.me/inter/inter.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base variables with FlyDining color scheme */
+@layer base {
+  :root {
+    --background: 225 25% 5%;
+    --foreground: 0 0% 100%;
+    --card: 224 30% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 224 30% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 255 100% 69%;  /* FlyDining Purple: #7B61FF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 31%;    /* #4F4F4F */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 225 25% 15%;
+    --muted-foreground: 0 0% 67%;
+    --accent: 255 100% 69%;   /* FlyDining Purple */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 345 100% 69%;  /* Danger: #FF647C */
+    --destructive-foreground: 0 0% 100%;
+    --success: 156 100% 39%;  /* Success: #00C48C */
+    --success-foreground: 0 0% 100%;
+    --warning: 27 100% 70%;   /* Warning: #FFA26B */
+    --warning-foreground: 0 0% 100%;
+    --info: 240 25% 14%;      /* Info: #1D1D28 */
+    --info-foreground: 0 0% 100%;
+    --border: 225 25% 20%;
+    --input: 225 25% 15%;
+    --ring: 255 100% 69%;     /* FlyDining Purple */
+    --radius: 0.75rem;        /* 12px for cards */
+
+    /* Dashboard chart colors */
+    --color-primary: #7B61FF;
+    --color-secondary: #4F4F4F;
+    --color-confirmed: #00C48C;
+    --color-pending: #FFA26B;
+    --color-cancelled: #FF647C;
+    --color-paid: #00C48C;
+    --color-pending: #FFA26B;
+    --color-failed: #FF647C;
+    --color-used: #7B61FF;
+    --color-unused: #484A55;
+    
+    /* Airline, dining, and amusement colors */
+    --color-airline: #1673FF;
+    --color-dining: #F97316;
+    --color-amusement: #7B61FF;
+  }
+
+  /* Ensure desktop and mobile displays are properly formatted */
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    letter-spacing: -0.015em;
+  }
+  
+  /* Custom animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-shine {
+    animation: shine 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes shine {
+    100% {
+      transform: translateX(200%) skewX(-20deg);
+    }
+  }
+}
+
+/* Custom utility classes with consistent styling */
+@layer components {
+  .flydining-card {
+    @apply rounded-xl bg-card border border-border shadow-sm transition-all duration-300;
+  }
+
+  .flydining-card-hover {
+    @apply hover:border-[#7B61FF]/30 hover:shadow-[#7B61FF]/10;
+  }
+  
+  .flydining-button {
+    @apply rounded-lg bg-[#7B61FF] text-white font-medium px-5 py-2 h-10
+    transition-all shadow-sm hover:bg-[#7B61FF]/90 
+    active:translate-y-[1px];
+  }
+  
+  .flydining-button-secondary {
+    @apply rounded-lg bg-[#4F4F4F] border border-border text-white px-5 py-2 h-10
+    transition-all hover:bg-[#3D3D3D];
+  }
+  
+  .flydining-input {
+    @apply bg-background border border-border rounded-md px-4 py-2 text-white focus:border-[#7B61FF]/50 focus:ring-1 focus:ring-[#7B61FF]/30;
+  }
+
+  .flydining-tab {
+    @apply px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+    data-[state=active]:bg-[#7B61FF] data-[state=active]:text-white
+    data-[state=inactive]:text-gray-400 data-[state=inactive]:hover:text-white;
+  }
+  
+  .flydining-badge {
+    @apply rounded-lg px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .flydining-badge-primary {
+    @apply bg-[#7B61FF]/20 text-[#7B61FF] border border-[#7B61FF]/30;
+  }
+
+  .flydining-badge-success {
+    @apply bg-[#00C48C]/20 text-[#00C48C] border border-[#00C48C]/30;
+  }
+
+  .flydining-badge-warning {
+    @apply bg-[#FFA26B]/20 text-[#FFA26B] border border-[#FFA26B]/30;
+  }
+
+  .flydining-badge-error {
+    @apply bg-[#FF647C]/20 text-[#FF647C] border border-[#FF647C]/30;
+  }
+
+  .dashboard-metric-card {
+    @apply flydining-card flydining-card-hover p-5 transition-all;
+  }
+  
+  .dashboard-chart-card {
+    @apply flydining-card p-6 h-80;
+  }
+  
+  /* Calendar display fixes */
+  .rdp-day {
+    height: 40px !important;
+    width: 40px !important;
+  }
+  
+  .rdp-button {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important; /* Consistent with our UI */
+  }
+  
+  .rdp-head_cell {
+    width: 40px !important;
+  }
+  
+  /* Session card and calendar grid fixes */
+  .session-card {
+    @apply flydining-card flydining-card-hover;
+    margin-bottom: 1rem;
+    z-index: 20;
+    position: relative;
+  }
+  
+  .calendar-grid {
+    margin-top: 2rem;
+    z-index: 10;
+    position: relative;
+  }
+  
+  /* Fix for popover content */
+  .rdp {
+    --rdp-cell-size: 40px !important;
+    background-color: var(--popover);
+    border-radius: 12px; /* Consistent with our UI */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Form elements consistency */
+  input, select, textarea {
+    @apply rounded-md; /* 6px for input fields */
+  }
+  
+  button {
+    @apply rounded-lg; /* 8px for buttons */
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .chart-container {
+    height: 300px !important;
+  }
+  
+  /* Ensure calendar is properly sized on mobile */
+  .rdp-day, .rdp-button, .rdp-head_cell {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  
+  .session-card {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* Custom drag and drop styles */
+@import './styles/dragdrop.css';
